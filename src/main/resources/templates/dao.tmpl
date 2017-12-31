@@ -1,0 +1,45 @@
+package com.scoulit.app.dao; 
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
+
+import {{mainPackageName}}.model.{{entityName}};
+import {{mainPackageName}}.repositories.{{entityName}}Repository;
+
+@Service
+@Transactional
+@EnableJpaRepositories(basePackages = { "{{mainPackageName}}.repositories" })
+public class {{entityName}}Dao {
+
+	@Autowired
+	{{entityName}}Repository repository;
+	
+	public List<{{entityName}}> findAll() {
+		return repository.findAll();
+	}
+	
+	public {{entityName}} findOne(Long id) {
+		return repository.findOne(id);
+	}
+	
+	public {{entityName}} save({{entityName}} entity) {
+		return repository.save(entity);
+	}
+	
+	public void delete(Long id) {
+		repository.delete(id);
+	}
+	
+	public void delete({{entityName}} entity) {
+		repository.delete(entity);
+	}
+	
+	public void deleteAll(List<{{entityName}}> entityList) {
+		repository.delete(entityList);
+	}
+	
+}

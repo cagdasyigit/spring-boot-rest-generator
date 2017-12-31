@@ -1,0 +1,65 @@
+package com.scoulit.app.rest; 
+
+import org.springframework.web.bind.annotation.*;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.http.MediaType;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
+
+import {{mainPackageName}}.model.{{entityName}};
+import {{mainPackageName}}.dao.{{entityName}}Dao;
+
+@RestController
+@EnableAutoConfiguration
+@RequestMapping("{{restServicePrefix}}/{{serviceName}}")
+public class RoleService { 
+
+	@Autowired
+	{{entityName}}Dao dao;
+
+	@RequestMapping(method=RequestMethod.GET, 
+		produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<{{entityName}}> readAll(){
+		return dao.findAll();
+	}
+	
+	@RequestMapping(value="/{id}",
+		method=RequestMethod.GET, 
+		produces = MediaType.APPLICATION_JSON_VALUE)
+	public {{entityName}} read(@PathVariable("id") Long id){
+		return dao.findOne(id);
+	}
+	
+	@RequestMapping(method=RequestMethod.POST, 
+		produces = MediaType.APPLICATION_JSON_VALUE, 
+		consumes = MediaType.APPLICATION_JSON_VALUE)
+	public {{entityName}} create(@RequestBody {{entityName}} entity){
+		return dao.save(entity);
+	}
+	
+	@RequestMapping(method=RequestMethod.PUT, 
+		produces = MediaType.APPLICATION_JSON_VALUE, 
+		consumes = MediaType.APPLICATION_JSON_VALUE)
+	public {{entityName}} update(@RequestBody {{entityName}} entity){
+		return dao.save(entity);
+	}
+	
+	@RequestMapping(value="/{id}",
+		method=RequestMethod.DELETE, 
+		produces = MediaType.APPLICATION_JSON_VALUE, 
+		consumes = MediaType.APPLICATION_JSON_VALUE)
+	public boolean delete(@PathVariable("id") Long id){
+		dao.delete(id);
+		return true;
+	}
+	
+	@RequestMapping(method=RequestMethod.DELETE, 
+		produces = MediaType.APPLICATION_JSON_VALUE, 
+		consumes = MediaType.APPLICATION_JSON_VALUE)
+	public boolean deleteAll(@RequestBody List<{{entityName}}> entityList){
+		dao.deleteAll(entityList);
+		return true;
+	}
+
+}

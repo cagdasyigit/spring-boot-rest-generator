@@ -3,7 +3,7 @@
 Simply open App.java file and replace configuration variables for your own project.
 
 Type your project source folder path:  
-private final static String sourceFolder = "C:/path/to/projects/example/src/main/java/";
+`private final static String sourceFolder = "C:/path/to/projects/example/src/main/java/";`
 
 Type your main app package:  
 `private final static String mainPackage = "com/example/app";`

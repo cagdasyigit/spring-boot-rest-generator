@@ -1,4 +1,4 @@
-package com.scoulit.app.rest; 
+package {{mainPackageName}}.rest; 
 
 import org.springframework.web.bind.annotation.*;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -13,7 +13,7 @@ import {{mainPackageName}}.dao.{{entityName}}Dao;
 @RestController
 @EnableAutoConfiguration
 @RequestMapping("{{restServicePrefix}}/{{serviceName}}")
-public class RoleService { 
+public class {{entityName}}Service { 
 
 	@Autowired
 	{{entityName}}Dao dao;

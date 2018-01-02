@@ -1,8 +1,11 @@
 package com.cagdasyigit.bootrestgenerator;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class App {
 
@@ -10,10 +13,33 @@ public class App {
 
 	private final static String mainPackage = "com/example/app";
 
-	private final static String[] entityNames = { "ExampleModel" };
+	private static List<String> entityNames = new ArrayList<String>();
 
 	public static void main(String[] args) {
+		generateForModels();
 		parseEntities();
+	}
+
+	private static void generateForModels() {
+		try {
+			File dir = new File(sourceFolder.concat(mainPackage).concat("/model"));
+			File[] directoryListing = dir.listFiles();
+			if (directoryListing != null) {
+				for (int i = 0; i < directoryListing.length; i++) {
+					File child = directoryListing[i];
+					String temp = child.getName().replace(".java", "");
+					entityNames.add(temp);
+				}
+
+			} else {
+				// Handle the case where dir is not really a directory.
+				// Checking dir.isDirectory() above would not be sufficient
+				// to avoid race conditions with another process that deletes
+				// directories.
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	private static void parseEntities() {

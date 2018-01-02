@@ -1,5 +1,8 @@
 #### Rest Service Generator For Spring Boot Projects
 
+Hello, purpose of this little app is automating to create spring boot rest api classes. I have tired and bored to create dao, repo, endpoint classes for every model in every project. This app does create very generic forms of these classes. Standard crud operations will be implemented for every model name you write in App.java.
+
+##### Configuration:
 Simply open App.java file and replace configuration variables for your own project.
 
 Type your project source folder path:  

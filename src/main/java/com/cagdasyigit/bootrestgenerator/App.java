@@ -16,13 +16,17 @@ public class App {
 	private static List<String> entityNames = new ArrayList<String>();
 
 	public static void main(String[] args) {
-		generateForModels();
+		// Uncomment this line for adding manuel model name
+		// entityNames.add("MyModel");		
+		
+		// Use this method for auto parsing model classes
+		parseEntityNamesFromFolder("model");
 		parseEntities();
 	}
 
-	private static void generateForModels() {
+	private static void parseEntityNamesFromFolder(String modelFolder) {
 		try {
-			File dir = new File(sourceFolder.concat(mainPackage).concat("/model"));
+			File dir = new File(sourceFolder.concat(mainPackage).concat("/" + modelFolder));
 			File[] directoryListing = dir.listFiles();
 			if (directoryListing != null) {
 				for (int i = 0; i < directoryListing.length; i++) {
